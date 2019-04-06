@@ -5,6 +5,9 @@ import json
 import datetime
 import pandas as pd
 
+# Credentials is just a python file with username, password, and whitelist as variables.
+import credentials
+
 MAX_SESSION_EVENTS = 200
 MAX_DAILY_EVENTS = 1000
 
@@ -92,7 +95,6 @@ class InstabotSession(object):
 
 
 def main():
-    import credentials
     acc = InstagramAccount(credentials.username, credentials.password)
     session = InstabotSession(acc, follower_ratio_upper_bound=1.5, session_type='U')
     session.begin()

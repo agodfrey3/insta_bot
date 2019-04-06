@@ -1,6 +1,8 @@
 from InstagramAPI import InstagramAPI
 import json
 from typing import List, Any
+
+# Credentials is just a python file with username, password, and whitelist as variables.
 import credentials
 
 whitelist = credentials.whitelist
