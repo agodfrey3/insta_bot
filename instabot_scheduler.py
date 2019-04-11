@@ -99,7 +99,7 @@ class InstabotSession(object):
 def main():
     acc = InstagramAccount(credentials.username, credentials.password)
     session = InstabotSession(acc, follower_ratio_upper_bound=1.5, session_type='F')
-    session.begin(tag="gracefitguide")
+    session.begin(tag="")
     print(json.dumps(session.session_activity, indent=4))
     acc.logout()
 
