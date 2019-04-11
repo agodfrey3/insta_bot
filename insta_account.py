@@ -1,6 +1,7 @@
 from InstagramAPI import InstagramAPI
 import json
 from typing import List, Any
+import time
 
 # Credentials is just a python file with username, password, and whitelist as variables.
 import credentials
@@ -127,12 +128,22 @@ class InstagramAccount(object):
         return self.get_last_json()['users']
 
     def get_username_by_id(self, userID):
-        self.__account.getUsernameInfo(userID)
-        return self.get_last_json()['user']['username']
+        while True:
+            try:
+                self.__account.getUsernameInfo(userID)
+                return self.get_last_json()['user']['username']
+            except Exception:
+                print("Exception thrown in get_username_by_id()...waiting 5 seconds...")
+                time.sleep(5)
 
     def get_id_by_username(self, username):
-        self.__account.searchUsername(usernameName=username)
-        return self.get_last_json()['user']['pk']
+        while True:
+            try:
+                self.__account.searchUsername(usernameName=username)
+                return self.get_last_json()['user']['pk']
+            except Exception:
+                print("Exception thrown in get_id_by_username()...waiting 5 seconds...")
+                time.sleep(5)
 
 
 def main():

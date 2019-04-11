@@ -4,11 +4,12 @@ from typing import List, Any
 import json
 import datetime
 import pandas as pd
+import time
 
 # Credentials is just a python file with username, password, and whitelist as variables.
 import credentials
 
-MAX_SESSION_EVENTS = 200
+MAX_SESSION_EVENTS = 100
 MAX_DAILY_EVENTS = 1000
 
 now = datetime.datetime.now()
@@ -68,6 +69,7 @@ class InstabotSession(object):
                         self.events_performed += 1
                         self.session_activity['followed'].append(self.account.get_username_by_id(curr_user))
                         print(f"Followed: {self.account.get_username_by_id(curr_user)}:{curr_user}")
+                        time.sleep(1)
                     else:
                         print(f"Did not follow: {self.account.get_username_by_id(curr_user)}:{curr_user}")
         else:
@@ -96,8 +98,8 @@ class InstabotSession(object):
 
 def main():
     acc = InstagramAccount(credentials.username, credentials.password)
-    session = InstabotSession(acc, follower_ratio_upper_bound=1.5, session_type='U')
-    session.begin()
+    session = InstabotSession(acc, follower_ratio_upper_bound=1.5, session_type='F')
+    session.begin(tag="gracefitguide")
     print(json.dumps(session.session_activity, indent=4))
     acc.logout()
 
