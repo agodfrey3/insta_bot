@@ -150,7 +150,7 @@ def main():
     # The main is just for testing.
     import credentials
     acc = InstagramAccount(credentials.username, credentials.password)
-    print(acc.get_username_by_id("7306452531"))
+    print(acc.get_username_by_id(""))
     acc.logout()
 
 
